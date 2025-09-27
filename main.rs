@@ -1,4 +1,4 @@
-// Simple CLI Calculator Written in Rust 9/27/2025
+// Simple CLI Calculator Written in Rust
 use std::io;
 use std::process;
 
@@ -30,13 +30,13 @@ fn main() {
 fn calc() {
     loop{
         println!("Enter first number: ");
-        let mut number_1 = String::new(); // declare variable as set to new string
+        let mut number_1 = String::new(); 
         io::stdin() // standard in
-            .read_line(&mut number_1) //read line and set number 1 as the entered line
-            .expect("Failed to read line"); // expect to fail to read line
-        let number_1: f64 = match number_1.trim().parse() { // number 1 is set to float and match/trim/parse
-            Ok(num) => num, // if the result is ok, then bind the value to num
-            Err(_) => { // if not then error and display the println! message
+            .read_line(&mut number_1) 
+            .expect("Failed to read line"); 
+        let number_1: f64 = match number_1.trim().parse() { 
+            Ok(num) => num, 
+            Err(_) => { 
                 println!("Invalid Input, try again.");
                 continue;
             }
@@ -67,27 +67,22 @@ fn calc() {
             break;
         }
 
-        //perform calculation
-        let result = match op { // let the result variable equals chosen op, then which ever op it is, complete the calculation
+        let result = match op { 
             "+" => number_1 + number_2,
             "-" => number_1 - number_2,
             "*" => number_1 * number_2,
             "/" => {
-                if number_2 == 0.0 { // if number_2 is equals to 0.0, throw an error
+                if number_2 == 0.0 { 
                     println!("Error: Division by zero.");
                     continue;
                 }
                 number_1 / number_2
             }
-
-            _ => { // _ is a catch-all pattern, It matches anything that wasn't matched by the previous arms.
+            _ => {
                 println!("Invalid operator, use: +, -, *, / or 'q'.");
                 continue;
             }
-        
         };
-
         println!("Result: {}", result);
     }
-
 }
